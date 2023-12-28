@@ -17,25 +17,25 @@ import (
 
 func main() {
 
-	// create api object
-	api := xswd.NewXSWD()
+  // create api object
+  api := xswd.NewXSWD()
 
-	const appName string = "myapp"
-	const host string = "localhost:44326" // default
+  const appName string = "myapp"
+  const host string = "localhost:44326" // default
 
-	// edit app info
-	api.AppInfo = xswd.AppInfo{
-		Id:          utils.GenerateAppId(appName),
-		Name:        appName,
-		Description: "myapp_description",
-		Url:         "http://localhost",
-	}
+  // edit app info
+  api.AppInfo = xswd.AppInfo{
+    Id:          utils.GenerateAppId(appName),
+    Name:        appName,
+    Description: "myapp_description",
+    Url:         "http://localhost",
+  }
 
-	// initialize
-	// will open the websocket connection and authorize the app
-	if err := api.Initialize(); err != nil {
-		panic(err)
-	}
+  // initialize
+  // will open the websocket connection and authorize the app
+  if err := api.Initialize(); err != nil {
+    panic(err)
+  }
 }
 ```
 
@@ -52,17 +52,17 @@ if err := api.Subscribe(shared.NewEntry, nil); err != nil {
 ```go
 // Subscribe to new_entry event with a callback
 callback := func(value any) {
-	// convert event value to Entry
-	entry := response.DecodeEntry(value)
+  // convert event value to Entry
+  entry := response.DecodeEntry(value)
 
-	// we can use entry as is from here...
+  // we can use entry as is from here...
 
-	// [OPTIONAL] display entry as JSON in console
-	if entryJSON, err := json.MarshalIndent(entry, "", "  "); err != nil {
-		panic(err)
-	} else {
-		fmt.Println("new_entry: ", string(entryJSON))
-	}
+  // [OPTIONAL] display entry as JSON in console
+  if entryJSON, err := json.MarshalIndent(entry, "", "  "); err != nil {
+    panic(err)
+  } else {
+    fmt.Println("new_entry: ", string(entryJSON))
+  }
 }
 
 if err := api.Subscribe(shared.NewEntry, nil); err != nil {
@@ -83,7 +83,7 @@ if err := api.Subscribe(shared.NewBalance, nil); err != nil {
 ```go
 // Subscribe to new_topoheight event with a callback
 callback := func(value any) {
-	balance := response.DecodeBalance(value)
+  balance := response.DecodeBalance(value)
 
   fmt.Println("new_balance: ", balance.Balance)
 }
@@ -108,7 +108,7 @@ if err := api.Subscribe(shared.NewTopoheight, nil); err != nil {
 // Subscribe to new_topoheight event with a callback
 callback := func(value any) {
   height := response.DecodeHeight(value)
-	
+
   fmt.Println("new_topoheight: ", height)
 }
 

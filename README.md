@@ -52,19 +52,19 @@ if err := api.Subscribe(shared.NewEntry, nil); err != nil {
 ```go
 // Subscribe to new_entry event with a callback
 callback := func(value any) {
-		// convert event value to Entry
-		entry := rpc.Entry{}
-		mapstructure.Decode(value, &entry)
+	// convert event value to Entry
+	entry := rpc.Entry{}
+	mapstructure.Decode(value, &entry)
 
-		// we can use entry as is from here...
+	// we can use entry as is from here...
 
-		// display entry as JSON in console
-		if entryJSON, err := json.MarshalIndent(entry, "", "  "); err != nil {
-			panic(err)
-		} else {
-			fmt.Println("new_entry: ", string(entryJSON))
-		}
+	// display entry as JSON in console
+	if entryJSON, err := json.MarshalIndent(entry, "", "  "); err != nil {
+		panic(err)
+	} else {
+		fmt.Println("new_entry: ", string(entryJSON))
 	}
+}
 
 if err := api.Subscribe(shared.NewEntry, nil); err != nil {
   panic(err)
@@ -84,10 +84,10 @@ if err := api.Subscribe(shared.NewBalance, nil); err != nil {
 ```go
 // Subscribe to new_topoheight event with a callback
 callback := func(value any) {
-  balance := struct {
-			Balance uint64   `json:"balance"`
-			SCID    rpc.Hash `json:"scid"`
-		}{}
+	balance := struct {
+		Balance uint64   `json:"balance"`
+		SCID    rpc.Hash `json:"scid"`
+	}{}
   mapstructure.Decode(value, &balance)
 
   fmt.Println("new_balance: ", balance.Balance)

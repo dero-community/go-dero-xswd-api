@@ -12,8 +12,6 @@ import (
 	"log"
 	"log/slog"
 	"net/url"
-
-	"github.com/mitchellh/mapstructure"
 )
 
 func main() {
@@ -52,8 +50,7 @@ func main() {
 	{
 		callback := func(value any) {
 			// convert event value to Entry
-			entry := rpc.Entry{}
-			mapstructure.Decode(value, &entry)
+			entry := response.DecodeEntry(value)
 
 			// we can use entry as is from here...
 
@@ -96,20 +93,13 @@ func main() {
 	// wait for entry with the same txid
 	api.WaitFor(shared.NewEntry,
 		func(value any) bool {
-			entry := rpc.Entry{}
-			mapstructure.Decode(value, &entry)
-
-			return entry.TXID == resp.Result.TXID
+			return response.DecodeEntry(value).TXID == resp.Result.TXID
 		},
 	)
 
 	// Subscribe to new_balance event
 	api.Subscribe(shared.NewBalance, func(value any) {
-		balance := struct {
-			Balance uint64   `json:"balance"`
-			SCID    rpc.Hash `json:"scid"`
-		}{}
-		mapstructure.Decode(value, &balance)
+		balance := response.DecodeBalance(value)
 
 		log.Println("MAIN: new_topoheight callback()", balance)
 	})
@@ -123,7 +113,7 @@ func main() {
 	{
 		// Subscribe to new_topoheight event
 		callback := func(value any) {
-			height := uint(value.(float64))
+			height := response.DecodeHeight(value)
 			log.Println("MAIN: new_topoheight callback()", height)
 		}
 		api.Subscribe(shared.NewTopoheight, callback)

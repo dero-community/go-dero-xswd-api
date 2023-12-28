@@ -53,12 +53,11 @@ if err := api.Subscribe(shared.NewEntry, nil); err != nil {
 // Subscribe to new_entry event with a callback
 callback := func(value any) {
 	// convert event value to Entry
-	entry := rpc.Entry{}
-	mapstructure.Decode(value, &entry)
+	entry := response.DecodeEntry(value)
 
 	// we can use entry as is from here...
 
-	// display entry as JSON in console
+	// [OPTIONAL] display entry as JSON in console
 	if entryJSON, err := json.MarshalIndent(entry, "", "  "); err != nil {
 		panic(err)
 	} else {
@@ -84,11 +83,7 @@ if err := api.Subscribe(shared.NewBalance, nil); err != nil {
 ```go
 // Subscribe to new_topoheight event with a callback
 callback := func(value any) {
-	balance := struct {
-		Balance uint64   `json:"balance"`
-		SCID    rpc.Hash `json:"scid"`
-	}{}
-  mapstructure.Decode(value, &balance)
+	balance := response.DecodeBalance(value)
 
   fmt.Println("new_balance: ", balance.Balance)
 }
@@ -112,7 +107,8 @@ if err := api.Subscribe(shared.NewTopoheight, nil); err != nil {
 ```go
 // Subscribe to new_topoheight event with a callback
 callback := func(value any) {
-  height := uint(value.(float64))
+  height := response.DecodeHeight(value)
+	
   fmt.Println("new_topoheight: ", height)
 }
 
@@ -139,8 +135,7 @@ resp := utils.Transfer(api, recipient_address, 10000)
 // Create a predicate function that checks if the entry's TXID is the same as the transfer's TXID
 predicate := func(value any) bool {
   // Decode entry
-  entry := rpc.Entry{}
-  mapstructure.Decode(value, &entry)
+  entry := response.DecodeEntry(value)
 
   // Check txid is the one we expect
   return entry.TXID == resp.Result.TXID

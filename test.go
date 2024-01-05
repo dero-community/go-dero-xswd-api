@@ -1,17 +1,18 @@
 package main
 
 import (
-	"dero-community/go-dero-xswd-api/xswd"
-	"dero-community/go-dero-xswd-api/xswd/request"
-	"dero-community/go-dero-xswd-api/xswd/response"
-	"dero-community/go-dero-xswd-api/xswd/rpc"
-	"dero-community/go-dero-xswd-api/xswd/shared"
-	"dero-community/go-dero-xswd-api/xswd/utils"
 	"encoding/json"
 	"fmt"
 	"log"
 	"log/slog"
 	"net/url"
+
+	"github.com/dero-community/go-dero-xswd-api/xswd"
+	"github.com/dero-community/go-dero-xswd-api/xswd/request"
+	"github.com/dero-community/go-dero-xswd-api/xswd/response"
+	"github.com/dero-community/go-dero-xswd-api/xswd/rpc"
+	"github.com/dero-community/go-dero-xswd-api/xswd/shared"
+	"github.com/dero-community/go-dero-xswd-api/xswd/utils"
 )
 
 func main() {

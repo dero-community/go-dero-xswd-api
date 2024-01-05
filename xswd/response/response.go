@@ -1,7 +1,7 @@
 package response
 
 import (
-	"dero-community/go-dero-xswd-api/xswd/shared"
+	"github.com/dero-community/go-dero-xswd-api/xswd/shared"
 )
 
 type ResponseType string

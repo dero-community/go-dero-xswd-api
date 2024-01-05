@@ -2,13 +2,14 @@ package utils
 
 import (
 	"crypto/sha256"
-	"dero-community/go-dero-xswd-api/xswd"
-	"dero-community/go-dero-xswd-api/xswd/request"
-	"dero-community/go-dero-xswd-api/xswd/response"
-	"dero-community/go-dero-xswd-api/xswd/rpc"
 	"encoding/hex"
 	"encoding/json"
 	"log"
+
+	"github.com/dero-community/go-dero-xswd-api/xswd"
+	"github.com/dero-community/go-dero-xswd-api/xswd/request"
+	"github.com/dero-community/go-dero-xswd-api/xswd/response"
+	"github.com/dero-community/go-dero-xswd-api/xswd/rpc"
 )
 
 // Transfer a DERO amount to an other wallet

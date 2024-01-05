@@ -1,4 +1,4 @@
-module dero-community/go-dero-xswd-api
+module github.com/dero-community/go-dero-xswd-api
 
 go 1.21.5
 

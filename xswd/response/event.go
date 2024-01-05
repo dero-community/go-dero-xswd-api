@@ -1,8 +1,8 @@
 package response
 
 import (
-	"dero-community/go-dero-xswd-api/xswd/rpc"
-	"dero-community/go-dero-xswd-api/xswd/shared"
+	"github.com/dero-community/go-dero-xswd-api/xswd/rpc"
+	"github.com/dero-community/go-dero-xswd-api/xswd/shared"
 
 	"github.com/mitchellh/mapstructure"
 )

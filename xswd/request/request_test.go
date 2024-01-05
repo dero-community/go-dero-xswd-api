@@ -1,9 +1,10 @@
 package request
 
 import (
-	"dero-community/go-dero-xswd-api/xswd/shared"
 	"encoding/json"
 	"testing"
+
+	"github.com/dero-community/go-dero-xswd-api/xswd/shared"
 )
 
 func TestSubscribeMarshal(t *testing.T) {

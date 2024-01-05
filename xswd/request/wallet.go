@@ -1,7 +1,7 @@
 package request
 
 import (
-	"dero-community/go-dero-xswd-api/xswd/rpc"
+	"github.com/dero-community/go-dero-xswd-api/xswd/rpc"
 )
 
 func Echo_Request() JSONRPCRequest[DaemonMethod, any] {

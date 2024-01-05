@@ -1,9 +1,6 @@
 package xswd
 
 import (
-	"dero-community/go-dero-xswd-api/xswd/request"
-	"dero-community/go-dero-xswd-api/xswd/response"
-	"dero-community/go-dero-xswd-api/xswd/shared"
 	"encoding/json"
 	"errors"
 	"log"
@@ -11,6 +8,10 @@ import (
 	"regexp"
 	"slices"
 	"time"
+
+	"github.com/dero-community/go-dero-xswd-api/xswd/request"
+	"github.com/dero-community/go-dero-xswd-api/xswd/response"
+	"github.com/dero-community/go-dero-xswd-api/xswd/shared"
 
 	"github.com/gorilla/websocket"
 )

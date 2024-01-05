@@ -1,6 +1,6 @@
 package request
 
-import "dero-community/go-dero-xswd-api/xswd/shared"
+import "github.com/dero-community/go-dero-xswd-api/xswd/shared"
 
 type SubscribeParams struct {
 	Event shared.Event `json:"event"`
